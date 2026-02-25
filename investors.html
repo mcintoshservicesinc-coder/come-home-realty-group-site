@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Investors | Come Home Realty Group</title>
+  <meta name="description" content="Investor-focused acquisition support, renovation coordination, and rental portfolio management in Florida." />
+  <style>
+    :root{
+      --charcoal:#222C2C;
+      --green:#4A6B54;
+      --bg:#FFFFFF;
+      --muted:#F5F7F7;
+      --muted2:#F1F4F4;
+      --text:#222C2C;
+      --sub:#445050;
+      --border:#E6ECEC;
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.08);
+      --radius:20px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      text-decoration:none;
+      display:flex;flex-direction:column;line-height:1.05;
+    }
+    .brand b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+    .brand span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+    nav{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:flex-end}
+    nav a{
+      font-size:14px;color:var(--sub);
+      padding:8px 10px;border-radius:999px;
+      text-decoration:none;
+      transition: background .2s ease, color .2s ease;
+    }
+    nav a:hover{background:var(--muted);color:var(--charcoal)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--charcoal);
+      background:var(--charcoal);color:#fff;
+      font-weight:650;letter-spacing:.2px;
+      gap:10px;
+      box-shadow: var(--shadow2);
+      text-decoration:none;
+    }
+    .btn.green{background:var(--green);border-color:var(--green)}
+    .btn.secondary{background:#fff;color:var(--charcoal);box-shadow:none}
+    .btn.secondary:hover{background:var(--muted)}
+    main{padding:40px 0 70px}
+    .hero{
+      border:1px solid var(--border);
+      background:
+        radial-gradient(900px 340px at 10% 20%, rgba(74,107,84,.14), transparent 55%),
+        radial-gradient(900px 340px at 90% 10%, rgba(34,44,44,.10), transparent 55%),
+        #fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    h1{margin:0 0 10px;font-size:38px;letter-spacing:-.7px}
+    .lead{margin:0 0 18px;color:var(--sub);max-width:900px;font-size:18px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:16px;
+      margin-top:18px;
+    }
+    .box{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    .box.dark{
+      background:linear-gradient(180deg, #1A2323, #222C2C);
+      color:#fff;
+      border-color:rgba(255,255,255,.14);
+    }
+    .box.dark p, .box.dark li{color:rgba(255,255,255,.82)}
+    .box h2{margin:0 0 10px;font-size:22px}
+    .box h3{margin:0 0 8px;font-size:16px}
+    .box p{margin:0;color:var(--sub)}
+    .list{margin:12px 0 0;padding-left:18px;color:var(--sub)}
+    .list li{margin:8px 0}
+    section{padding:34px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:14px}
+    .section-head h2{margin:0;font-size:28px;letter-spacing:-.4px}
+    .section-head p{margin:0;color:var(--sub);max-width:720px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;color:var(--green);
+      font-weight:780;letter-spacing:.7px;text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--green);display:inline-block}
+
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .quote{
+      border-left:4px solid rgba(74,107,84,.55);
+      padding:12px 14px;
+      background:rgba(74,107,84,.06);
+      border-radius:14px;
+      color:var(--sub);
+      margin-top:14px;
+    }
+    footer{border-top:1px solid var(--border);padding:22px 0;color:var(--sub);font-size:14px}
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .hero{padding:22px}
+      h1{font-size:34px}
+      nav{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href="./index.html">
+          <b>COME HOME</b>
+          <span>REALTY GROUP</span>
+        </a>
+        <nav aria-label="Investors navigation">
+          <a href="#offer">What We Offer</a>
+          <a href="#how">How It Works</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn secondary" href="./index.html#contact">Contact</a>
+          <a class="btn green" href="./index.html#contact">Request a Consult</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="hero">
+        <h1>For Investors</h1>
+        <p class="lead">A Florida-focused, operator-minded partner for acquisition support, renovation coordination, and rental portfolio management — built for out-of-state owners who value speed, clarity, and accountability.</p>
+
+        <div class="grid">
+          <div class="box">
+            <h2>Investor outcomes we optimize</h2>
+            <ul class="list">
+              <li>Faster stabilization (less vacancy + smoother turnovers)</li>
+              <li>Better decisions through visibility and documented execution</li>
+              <li>Renovation scopes aligned to ROI and exit strategy</li>
+              <li>Portfolio-first strategy (not transaction-first)</li>
+            </ul>
+            <div class="cta-row">
+              <a class="btn green" href="./index.html#contact">Talk Strategy</a>
+              <a class="btn secondary" href="./homes.html">View Available Homes</a>
+            </div>
+          </div>
+
+          <div class="box dark">
+            <h2>What investors care about</h2>
+            <p>We build trust with a repeatable system:</p>
+            <ul class="list">
+              <li><b>Visibility &amp; accountability</b> — clear cadence and documentation</li>
+              <li><b>Stabilization speed</b> — turn-ready execution designed to reduce downtime</li>
+              <li><b>Lifecycle alignment</b> — acquire, renovate, rent, manage, and sell under one plan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="quote">“Warm brand, professional execution.” Your investors should feel confident from the first click.</div>
+      </div>
+
+      <section id="inventory">
+        <div class="section-head">
+          <div>
+            <h2>Browse investor opportunities</h2>
+            <p>Once IDX is live, this links to curated searches for buy-and-hold, value-add, and multi-family opportunities.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Homes for Sale</div>
+            <h3>Search Florida inventory</h3>
+            <p>Use the Listings page to search for-sale opportunities (coming soon via Stellar MLS IDX).</p>
+            <div class="cta-row">
+              <a class="btn green" href="./homes.html">Open Listings</a>
+              <a class="btn secondary" href="./index.html#contact">Request a Deal Search</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> MLS Rentals</div>
+            <h3>Rental comps & placement pipeline</h3>
+            <p>Search rental inventory for market comps and tenant placement opportunities (IDX pending).</p>
+            <div class="cta-row">
+              <a class="btn secondary" href="./homes.html">Open Listings</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Managed Rentals</div>
+            <h3>Our managed availability</h3>
+            <p>Your managed inventory lives here (manual listings). This tab stays clean and on-brand.</p>
+            <div class="cta-row">
+              <a class="btn secondary" href="./homes.html">Open Listings</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="offer">
+        <div class="section-head">
+          <div>
+            <h2>What we offer</h2>
+            <p>Services designed for investors — whether you’re buying your first Florida rental or scaling a portfolio.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Acquisition Support</div>
+            <h3>Deal guidance & due diligence coordination</h3>
+            <p>We help investors evaluate targets, coordinate due diligence, and plan for stabilization.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Renovation Coordination</div>
+            <h3>ROI-aligned scopes and oversight</h3>
+            <p>Turnovers and value-add improvements coordinated to support rent, valuation, and exit timing.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Portfolio Management</div>
+            <h3>Professional operations</h3>
+            <p>Screening workflow, rent collection cadence, maintenance coordination, and owner visibility.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="how">
+        <div class="section-head">
+          <div>
+            <h2>How it works</h2>
+            <p>A simple workflow designed for remote investors.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 1</div>
+            <h3>Define your buy box</h3>
+            <p>Budget, target markets, asset type, timeline, and your desired management posture.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 2</div>
+            <h3>Acquire & plan stabilization</h3>
+            <p>Due diligence coordination and scope planning (rent-ready vs. value-add).</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 3</div>
+            <h3>Execute & operate</h3>
+            <p>Rehab/turnover, tenant placement workflow, and ongoing management cadence.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p>Helpful answers for out-of-state owners.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Do you work with out-of-state investors?</h3>
+            <p>Yes — the site and systems are designed for remote ownership and clear visibility.</p>
+          </div>
+          <div class="card">
+            <h3>Do you handle renovation coordination?</h3>
+            <p>Yes — we coordinate scopes to support ROI, stabilization speed, and long-term operations.</p>
+          </div>
+          <div class="card">
+            <h3>What markets do you cover?</h3>
+            <p>Florida markets (customize this list on the main site). We can align coverage to your strategy.</p>
+          </div>
+        </div>
+
+        <div class="cta-row" style="margin-top:18px">
+          <a class="btn green" href="./index.html#contact">Request an Investor Consultation</a>
+          <a class="btn secondary" href="./index.html">Back to Home</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> Come Home Realty Group.</div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

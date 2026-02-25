@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Renters | Come Home Realty Group</title>
+  <meta name="description" content="Find available homes and access renter account tools through Come Home Realty Group." />
+  <style>
+    :root{
+      --charcoal:#222C2C;
+      --green:#4A6B54;
+      --bg:#FFFFFF;
+      --muted:#F5F7F7;
+      --muted2:#F1F4F4;
+      --text:#222C2C;
+      --sub:#445050;
+      --border:#E6ECEC;
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.08);
+      --radius:20px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    header{
+      position:sticky; top:0; z-index:50;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .top{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:14px 0}
+    .brand{text-decoration:none;display:flex;flex-direction:column;line-height:1.05}
+    .brand b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+    .brand span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--charcoal);
+      background:var(--charcoal);color:#fff;
+      font-weight:650;letter-spacing:.2px;
+      gap:10px;
+      box-shadow: var(--shadow2);
+      text-decoration:none;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow)}
+    .btn.green{background:var(--green);border-color:var(--green)}
+    .btn.green:hover{background:#3f5f4b}
+    .btn.secondary{background:#fff;color:var(--charcoal);box-shadow:none}
+    .btn.secondary:hover{background:var(--muted)}
+    main{padding:40px 0 70px}
+    .hero{
+      background:linear-gradient(180deg, #1A2323, #222C2C);
+      color:#fff;
+      border-radius:28px;
+      padding:28px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.14);
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 340px at 10% 20%, rgba(74,107,84,.20), transparent 55%),
+        radial-gradient(900px 340px at 90% 10%, rgba(255,255,255,.06), transparent 55%);
+      pointer-events:none;
+    }
+    .hero *{position:relative}
+    h1{margin:0 0 10px;font-size:38px;letter-spacing:-.7px}
+    .lead{margin:0 0 18px;color:rgba(255,255,255,.82);max-width:900px;font-size:18px}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+    .card{
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:var(--radius);
+      padding:18px;
+      background:rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+    }
+    .card h2{margin:0 0 10px;font-size:18px}
+    .card p{margin:0;color:rgba(255,255,255,.82)}
+    .note{
+      margin-top:14px;
+      padding:14px 14px;
+      border:1px dashed rgba(255,255,255,.22);
+      border-radius:14px;
+      color:rgba(255,255,255,.82);
+      background:rgba(255,255,255,.05);
+    }
+    section{padding:34px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:14px}
+    .section-head h2{margin:0;font-size:28px;letter-spacing:-.4px}
+    .section-head p{margin:0;color:var(--sub);max-width:720px}
+    .light-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .light-card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    .light-card h3{margin:0 0 8px}
+    .light-card p{margin:0;color:var(--sub)}
+    footer{border-top:1px solid var(--border);padding:22px 0;color:var(--sub);font-size:14px}
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      .light-cards{grid-template-columns:1fr}
+      h1{font-size:34px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href="./index.html">
+          <b>COME HOME</b>
+          <span>REALTY GROUP</span>
+        </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn secondary" href="./index.html">Home</a>
+          <a class="btn green" href="./index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="hero">
+        <h1>For Renters</h1>
+        <p class="lead">Find available homes, learn the process, and access your renter tools. (You can add your platform login link here when ready.)</p>
+
+        <div class="cta-row">
+          <a class="btn green" href="./homes.html">View Listings</a>
+          <a class="btn" href="./apply.html">Start Application</a>
+          <a class="btn secondary" href="https://secure.rentecdirect.com/tenants/login.php" target="_blank" rel="noopener" target="_blank" rel="noopener">Renter Portal Login</a>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <h2>Simple application process</h2>
+            <p>Clear steps, transparent expectations, and fast communication.</p>
+          </div>
+          <div class="card">
+            <h2>Professional management</h2>
+            <p>Structured maintenance coordination and clear support.</p>
+          </div>
+          <div class="card">
+            <h2>Resident tools</h2>
+            <p>Portal login for payments, documents, and service requests (link coming soon).</p>
+          </div>
+        </div>
+
+        <div class="note"><b>Tip:</b> When your platform is ready, we’ll replace “Renter Portal Login” with your real link (AppFolio/Buildium/etc.).</div>
+      </div>
+
+      <section>
+        <div class="section-head">
+          <div>
+            <h2>Helpful info</h2>
+            <p>Optional — keep this lean for now, or expand later with FAQs, pet policy, and maintenance guidelines.</p>
+          </div>
+        </div>
+
+        <div class="light-cards">
+          <div class="light-card">
+            <h3>How to apply</h3>
+            <p>Provide your application link or process steps here when you’re ready.</p>
+          </div>
+          <div class="light-card">
+            <h3>Maintenance requests</h3>
+            <p>Add instructions or a link to your portal request page later.</p>
+          </div>
+          <div class="light-card">
+            <h3>Lease standards</h3>
+            <p>Optional: provide baseline standards for clear expectations.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> Come Home Realty Group.</div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

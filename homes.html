@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Available Homes | Come Home Realty Group</title>
+  <meta name="description" content="Browse available rental homes managed by Come Home Realty Group." />
+  <style>
+    :root{
+      --charcoal:#222C2C;
+      --green:#4A6B54;
+      --bg:#FFFFFF;
+      --muted:#F5F7F7;
+      --text:#222C2C;
+      --sub:#445050;
+      --border:#E6ECEC;
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.08);
+      --radius:20px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    header{
+      border-bottom:1px solid var(--border);
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      position:sticky; top:0; z-index:50;
+    }
+    .top{
+      display:flex;align-items:center;justify-content:space-between;gap:14px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;flex-direction:column;line-height:1.05;text-decoration:none;
+    }
+    .brand b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+    .brand span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:10px 14px;border-radius:999px;
+      border:1px solid var(--charcoal);
+      background:var(--charcoal);color:#fff;
+      font-weight:650;letter-spacing:.2px;
+      gap:10px;
+      box-shadow: var(--shadow2);
+      text-decoration:none;
+    }
+    .btn.secondary{background:#fff;color:var(--charcoal);box-shadow:none}
+    .btn.secondary:hover{background:var(--muted)}
+    main{padding:42px 0 60px}
+    h1{margin:0 0 10px;font-size:34px;letter-spacing:-.5px}
+    .lead{margin:0 0 18px;color:var(--sub);max-width:840px}
+    .tabs{
+      display:flex;gap:10px;flex-wrap:wrap;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:999px;
+      padding:8px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+      width:fit-content;
+    }
+    .tab{
+      border:0;
+      background:transparent;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:650;
+      color:var(--sub);
+      cursor:pointer;
+    }
+    .tab[aria-selected="true"]{
+      background:rgba(74,107,84,.12);
+      color:var(--charcoal);
+    }
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 18px}
+    .search{
+      display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    }
+    input{
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:12px 12px;
+      font-size:15px;
+      outline:none;
+      min-width:260px;
+    }
+    input:focus{border-color:rgba(74,107,84,.55);box-shadow:0 0 0 4px rgba(74,107,84,.12)}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+      display:flex;
+      flex-direction:column;
+      min-height:320px;
+    }
+    .thumb{
+      height:160px;
+      background:
+        linear-gradient(180deg, rgba(34,44,44,.10), rgba(34,44,44,.08)),
+        radial-gradient(600px 220px at 20% 20%, rgba(74,107,84,.18), transparent 55%);
+    }
+    .body{padding:16px 16px 18px}
+    .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--sub);font-size:14px;margin-top:6px}
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid var(--border);
+      background:var(--muted);
+      padding:7px 10px;border-radius:999px;
+    }
+    .addr{margin:0;font-weight:750}
+    .price{margin:10px 0 0;font-size:18px}
+    .small{margin:10px 0 0;color:var(--sub);font-size:14px}
+    .note{
+      margin:18px 0 0;
+      padding:14px 14px;
+      border:1px dashed rgba(74,107,84,.45);
+      border-radius:14px;
+      color:var(--sub);
+      background:rgba(74,107,84,.06);
+    }
+    footer{border-top:1px solid var(--border);padding:22px 0;color:var(--sub);font-size:14px}
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+      input{min-width:220px;width:100%}
+      .tabs{border-radius:18px}
+    }
+  
+/* IDX embed mock (visual preview) */
+.idx-mock{
+  border:1px dashed rgba(74,107,84,.55);
+  background:rgba(74,107,84,.06);
+  border-radius:18px;
+  padding:16px;
+  margin-top:12px;
+}
+.idx-mock .row{
+  display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+}
+.idx-mock input,.idx-mock select{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:12px;
+  font-size:14px;
+  background:#fff;
+  min-width:180px;
+}
+.idx-mock .chip{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  padding:8px 10px;
+  border-radius:999px;
+  font-size:13px;
+  color:var(--sub);
+}
+.idx-mock .mock-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:11px 14px;
+  border-radius:999px;
+  border:1px solid var(--charcoal);
+  background:var(--charcoal);
+  color:#fff;
+  font-weight:650;
+  text-decoration:none;
+}
+.idx-mock .results{
+  margin-top:12px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+.idx-mock .r{
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,.06);
+}
+.idx-mock .r .thumb2{
+  height:110px;
+  background:
+    linear-gradient(180deg, rgba(34,44,44,.10), rgba(34,44,44,.08)),
+    radial-gradient(560px 200px at 20% 20%, rgba(74,107,84,.18), transparent 55%);
+}
+.idx-mock .r .b{padding:12px}
+.idx-mock .r .b b{display:block;margin-bottom:6px}
+.idx-mock .small{color:var(--sub);font-size:13px}
+@media (max-width: 980px){
+  .idx-mock .results{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="top">
+        <a class="brand" href="./index.html">
+          <b>COME HOME</b>
+          <span>REALTY GROUP</span>
+        </a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a class="btn secondary" href="./index.html#renters">Back to For Renters</a>
+          <a class="btn" href="./index.html#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <h1>Listings</h1>
+      <p class="lead">This page is designed to become your live rental listings hub. For now, it includes polished placeholders so the page looks finished while you decide how you want to publish listings (manual cards, PDF link, or a feed from AppFolio/Buildium, etc.).</p>
+
+      <div class="bar">
+        <div class="tabs" role="tablist" aria-label="Listings tabs">
+          <button class="tab" role="tab" aria-selected="true" data-tab="managed">Managed Rentals</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="mls_rentals">MLS Rentals</button>
+          <button class="tab" role="tab" aria-selected="false" data-tab="for_sale">Homes for Sale</button>
+        </div>
+
+        <div class="search">
+          <input id="q" placeholder="Search by city, zip, beds… (placeholder)" />
+        </div>
+      </div>
+
+      <div class="grid" id="cards">
+        <!-- Managed Rentals (your portfolio) -->
+        <div class="card" data-group="managed">
+          <div class="thumb"></div>
+          <div class="body">
+            <p class="addr">Managed Rental (Placeholder) — Ocala, FL</p>
+            <div class="meta">
+              <span class="pill">3 bed</span>
+              <span class="pill">2 bath</span>
+              <span class="pill">1,450 sqft</span>
+            </div>
+            <div class="price">$2,150 / month</div>
+            <div class="small">Your managed inventory will appear here (manual listings).</div>
+          </div>
+        </div>
+
+        <!-- MLS Rentals (co-broke / tenant placement) -->
+        <div class="card" data-group="mls_rentals">
+          <div class="thumb"></div>
+          <div class="body">
+            <p class="addr">MLS Rentals (Coming Soon)</p>
+            <div class="meta">
+              <span class="pill">Search + Filters</span>
+              <span class="pill">Map</span>
+              <span class="pill">Saved Searches</span>
+            </div>
+            <div class="price">IDX integration pending</div>
+            <div class="small">Once Stellar MLS + IDX is active, this tab will show live MLS rentals.
+            <div class="idx-mock" aria-label="IDX rental search preview">
+              <div class="row">
+                <span class="chip">IDX Rental Search (preview)</span>
+                <input placeholder="City / ZIP" disabled>
+                <select disabled><option>Beds</option></select>
+                <select disabled><option>Max Rent</option></select>
+                <a class="mock-btn" href="javascript:void(0)" aria-disabled="true">Search</a>
+              </div>
+              <div class="row" style="margin-top:10px">
+                <span class="chip">Map</span>
+                <span class="chip">Sort: Newest</span>
+                <span class="chip">Save Search</span>
+                <span class="chip">Email Alerts</span>
+              </div>
+              <div class="results" aria-hidden="true">
+                <div class="r"><div class="thumb2"></div><div class="b"><b>Rental Result</b><div class="small">Rendered by IDX widget</div></div></div>
+                <div class="r"><div class="thumb2"></div><div class="b"><b>Rental Result</b><div class="small">Rendered by IDX widget</div></div></div>
+                <div class="r"><div class="thumb2"></div><div class="b"><b>Rental Result</b><div class="small">Rendered by IDX widget</div></div></div>
+              </div>
+              <div class="small" style="margin-top:10px">When Stellar MLS IDX is active, your provider’s embed code will replace this preview block.</div>
+            </div>
+        </div>
+          </div>
+        </div>
+
+        <!-- Homes for Sale (investor acquisition funnel) -->
+        <div class="card" data-group="for_sale">
+          <div class="thumb"></div>
+          <div class="body">
+            <p class="addr">Homes for Sale (Coming Soon)</p>
+            <div class="meta">
+              <span class="pill">Single-family</span>
+              <span class="pill">Multi-family</span>
+              <span class="pill">Investor Filters</span>
+            </div>
+            <div class="price">IDX integration pending</div>
+            <div class="small">This tab will show for-sale inventory, optimized for investor searches.
+            <div class="idx-mock" aria-label="IDX for-sale search preview">
+              <div class="row">
+                <span class="chip">IDX For-Sale Search (preview)</span>
+                <input placeholder="City / ZIP" disabled>
+                <select disabled><option>Property Type</option></select>
+                <select disabled><option>Max Price</option></select>
+                <a class="mock-btn" href="javascript:void(0)" aria-disabled="true">Search</a>
+              </div>
+              <div class="row" style="margin-top:10px">
+                <span class="chip">Multi-family</span>
+                <span class="chip">Investor Filters</span>
+                <span class="chip">Sort: Newest</span>
+                <span class="chip">Save Search</span>
+              </div>
+              <div class="results" aria-hidden="true">
+                <div class="r"><div class="thumb2"></div><div class="b"><b>For-Sale Result</b><div class="small">Rendered by IDX widget</div></div></div>
+                <div class="r"><div class="thumb2"></div><div class="b"><b>For-Sale Result</b><div class="small">Rendered by IDX widget</div></div></div>
+                <div class="r"><div class="thumb2"></div><div class="b"><b>For-Sale Result</b><div class="small">Rendered by IDX widget</div></div></div>
+              </div>
+              <div class="small" style="margin-top:10px">When Stellar MLS IDX is active, your provider’s embed code will replace this preview block.</div>
+            </div>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note">
+        <b>How we can make this page live next:</b>
+        <div style="margin-top:8px">
+          • <b>Managed Rentals:</b> you add properties manually (fast, best for your own inventory).<br/>
+          • <b>MLS Rentals:</b> embed IDX rental search once Stellar MLS + IDX is active.<br/>
+          • <b>Homes for Sale:</b> embed IDX for-sale search (and later “Investor Hot Sheets”).
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© <span id="y"></span> Come Home Realty Group.</div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const tabs = document.querySelectorAll(".tab");
+    const cards = document.querySelectorAll(".card");
+
+    function setTab(group){
+      tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.tab === group ? "true" : "false"));
+      cards.forEach(c => c.style.display = (c.dataset.group === group) ? "flex" : "none");
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => setTab(t.dataset.tab)));
+    setTab("managed");
+  </script>
+</body>
+</html>
