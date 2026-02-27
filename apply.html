@@ -257,7 +257,12 @@ By submitting this application, you authorize Come Home Realty Group to verify a
 <button type="submit">Submit Application</button>
 </section>
 
-</form>
+<form name="Rental Application"
+      method="POST"
+      data-netlify="true"
+      enctype="multipart/form-data"
+      action="/application-received.html">
+  <input type="hidden" name="form-name" value="Rental Application">>
 </div>
 
 
