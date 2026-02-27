@@ -140,8 +140,8 @@ button:hover{opacity:.92}
 <h1>Rental Application</h1>
 <p class="lead">Complete the application below. All adult occupants (18+) must submit a separate application.</p>
 
-<!-- ✅ FIX: add action to force redirect to your success page and avoid Safari errors -->
-<form name="Rental Application" method="POST" data-netlify="true" enctype="multipart/form-data" action="/application-received.html">
+<!-- PATCH: action="/" so Netlify captures POST reliably; JS will redirect to /application-received.html -->
+<form name="Rental Application" method="POST" data-netlify="true" enctype="multipart/form-data" action="/">
 <input type="hidden" name="form-name" value="Rental Application">
 
 <section>
@@ -168,7 +168,7 @@ button:hover{opacity:.92}
   <div class="file-note">Used solely for identity and background verification (including credit screening) in compliance with FCRA and Florida law.</div>
 </div>
 
-<!-- ✅ FIX: cleaned-up Confirm SSN block + button placement -->
+<!-- PATCH: fixed Confirm SSN HTML so the Show button is properly placed -->
 <div class="full">
   <label>Confirm Social Security Number</label>
   <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
@@ -261,12 +261,7 @@ By submitting this application, you authorize Come Home Realty Group to verify a
 <button type="submit">Submit Application</button>
 </section>
 
-<form name="Rental Application"
-      method="POST"
-      data-netlify="true"
-      enctype="multipart/form-data"
-      action="https://www.comehomerealtygroup.com/application-received.html">
-  <input type="hidden" name="form-name" value="Rental Application">
+</form>
 </div>
 
 
@@ -300,9 +295,12 @@ By submitting this application, you authorize Come Home Realty Group to verify a
     }
     ssn.addEventListener("input", validateMatch);
     ssnConfirm.addEventListener("input", validateMatch);
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (e) => {
       validateMatch();
-      // Let browser show validation UI if invalid
+      if(!form.checkValidity()){
+        // Let browser show validation UI
+        return;
+      }
     });
   }
 })();
@@ -342,10 +340,12 @@ By submitting this application, you authorize Come Home Realty Group to verify a
       const start = el.selectionStart || 0;
       const before = el.value;
       el.value = formatSSN(before);
+      // Best-effort caret handling (keeps typing natural in most browsers)
       const diff = el.value.length - before.length;
       el.setSelectionRange(start + diff, start + diff);
     });
     el.addEventListener("blur", () => {
+      // Ensure final format on blur
       el.value = formatSSN(el.value);
     });
   }
@@ -354,5 +354,44 @@ By submitting this application, you authorize Come Home Realty Group to verify a
   wire("ssnConfirm");
 })();
 </script>
+
+<!-- PATCH: Safari-safe submit (Netlify Forms + uploads) -->
+<script>
+(function () {
+  const form = document.querySelector('form[name="Rental Application"]');
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Let native validation run first
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    try {
+      const formData = new FormData(form);
+
+      // POST to site root so Netlify Forms captures it reliably
+      const res = await fetch("/", {
+        method: "POST",
+        body: formData,
+      });
+
+      // Redirect client-side to avoid Safari trying to "open" the POST response
+      if (res.ok) {
+        window.location.href = "/application-received.html";
+      } else {
+        alert("We received your submission, but the server returned an unexpected response. If you don’t see confirmation, please try again.");
+      }
+    } catch (err) {
+      alert("Safari had trouble submitting the form. Please try again, or use Chrome as a backup.");
+      console.error(err);
+    }
+  });
+})();
+</script>
+
 </body>
 </html>
