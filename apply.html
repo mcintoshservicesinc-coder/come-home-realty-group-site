@@ -109,10 +109,14 @@ button:hover{opacity:.92}
 <form name="Rental Application"
       method="POST"
       data-netlify="true"
+      data-netlify-honeypot="bot-field"
       enctype="multipart/form-data"
       action="/application-received.html">
 
 <input type="hidden" name="form-name" value="Rental Application">
+  <p style="display:none;">
+  <label>Don’t fill this out: <input name="bot-field"></label>
+</p>
 
 <section>
 <div class="section-title">Property Information</div>
