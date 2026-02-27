@@ -259,6 +259,34 @@ By submitting this application, you authorize Come Home Realty Group to obtain c
   });
 })();
 </script>
+<script>
+(function(){
+  const MAX_MB = 10;
+  const MAX_BYTES = MAX_MB * 1024 * 1024;
 
+  const inputs = [
+    document.querySelector('input[name="government_id"]'),
+    document.querySelector('input[name="income_verification"]'),
+    document.querySelector('input[name="pet_photo"]')
+  ].filter(Boolean);
+
+  function checkFiles(input){
+    const files = input.files;
+    if(!files || !files.length) return;
+
+    for (const f of files){
+      if (f.size > MAX_BYTES){
+        input.value = "";
+        alert(`That file is too large. Please upload a file under ${MAX_MB}MB.`);
+        return;
+      }
+    }
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener("change", () => checkFiles(input));
+  });
+})();
+</script>
 </body>
 </html>
