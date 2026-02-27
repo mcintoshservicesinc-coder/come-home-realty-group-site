@@ -1,143 +1,288 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rental Application | Come Home Realty Group</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rental Application | Come Home Realty Group</title>
 
-  <style>
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      background:#f6f7f7;
-      color:#222;
-    }
-    .wrap{
-      max-width:900px;
-      margin:0 auto;
-      padding:60px 18px;
-    }
-    .card{
-      background:#fff;
-      border:1px solid #e6e6e6;
-      border-radius:18px;
-      padding:26px;
-      box-shadow:0 14px 30px rgba(0,0,0,.06);
-    }
-    h1{margin:0 0 12px;}
-    label{
-      display:block;
-      margin-top:18px;
-      font-weight:600;
-      font-size:14px;
-    }
-    input, select, textarea{
-      width:100%;
-      margin-top:6px;
-      padding:12px;
-      border-radius:10px;
-      border:1px solid #ccc;
-      font-size:14px;
-    }
-    .row{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:16px;
-    }
-    .btn{
-      display:inline-block;
-      margin-top:24px;
-      padding:12px 18px;
-      border-radius:999px;
-      border:1px solid #222;
-      background:#222;
-      color:#fff;
-      text-decoration:none;
-      cursor:pointer;
-      font-weight:600;
-    }
-    .small{
-      font-size:13px;
-      color:#666;
-      margin-top:8px;
-    }
-    @media(max-width:700px){
-      .row{grid-template-columns:1fr;}
-    }
-  </style>
+<style>
+:root{
+  --charcoal:#222C2C;
+  --green:#4A6B54;
+  --bg:#FFFFFF;
+  --muted:#F5F7F7;
+  --text:#222C2C;
+  --sub:#445050;
+  --border:#E6ECEC;
+  --radius:18px;
+  --max:960px;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:var(--muted);
+  color:var(--text);
+}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:24px 18px}
+main{padding:22px 0 40px}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:20px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.06);
+}
+
+h1{margin:0 0 10px;letter-spacing:.2px}
+p.lead{margin:0 0 18px;color:var(--sub);line-height:1.6}
+
+.section-title{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid var(--border);
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:14px;
+  margin-top:12px;
+}
+
+.full{grid-column:1 / -1}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:650;
+  color:var(--charcoal);
+  margin-bottom:6px;
+}
+
+input, select, textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:#fff;
+  font-size:14px;
+  outline:none;
+}
+
+textarea{min-height:100px;resize:vertical}
+
+.file-note{
+  font-size:12.5px;
+  color:var(--sub);
+  margin-top:6px;
+  line-height:1.45;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:18px;
+  align-items:center;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 16px;
+  border-radius:999px;
+  border:1px solid var(--charcoal);
+  background:var(--charcoal);
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  cursor:pointer;
+}
+
+.btn.secondary{
+  background:#fff;
+  color:var(--charcoal);
+}
+
+.btn-inline{
+  padding:10px 12px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:var(--muted);
+  color:var(--charcoal);
+  font-weight:650;
+  cursor:pointer;
+}
+
+.notice{
+  margin-top:14px;
+  padding:14px;
+  border-radius:16px;
+  background:rgba(74,107,84,.08);
+  border:1px solid rgba(74,107,84,.20);
+  color:var(--sub);
+  font-size:13px;
+  line-height:1.55;
+}
+
+.small{
+  font-size:12.5px;color:var(--sub);line-height:1.5
+}
+
+@media (max-width: 860px){
+  .grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="card">
+    <main>
+      <div class="card">
+        <h1>Rental Application</h1>
+        <p class="lead">
+          Complete this application to be considered for a rental home. Uploads are required for identity and income verification.
+        </p>
 
-      <h1>Rental Application</h1>
+        <!-- ✅ IMPORTANT FIX: action points to your own success page (prevents Safari errors & Netlify default return issues) -->
+        <form name="Rental Application" method="POST" data-netlify="true" enctype="multipart/form-data" action="/application-received.html">
+          <input type="hidden" name="form-name" value="Rental Application">
 
-      <form name="Rental Application"
-            method="POST"
-            data-netlify="true"
-            enctype="multipart/form-data"
-            action="/application-received.html">
+          <section>
+            <div class="section-title">Property Information</div>
+            <div class="grid">
+              <div><label>Property Address</label><input type="text" name="property_address" required></div>
+              <div><label>Desired Move-In Date</label><input type="date" name="move_in_date" required></div>
+            </div>
+          </section>
 
-        <input type="hidden" name="form-name" value="Rental Application">
+          <section>
+            <div class="section-title">Applicant Information</div>
+            <div class="grid">
+              <div><label>First Name</label><input type="text" name="first_name" required></div>
+              <div><label>Last Name</label><input type="text" name="last_name" required></div>
+              <div><label>Email</label><input type="email" name="email" required></div>
+              <div><label>Phone</label><input type="tel" name="phone" required></div>
 
-        <div class="row">
-          <div>
-            <label>First Name</label>
-            <input type="text" name="first_name" required>
+              <div class="full">
+                <label>Current Address</label>
+                <input type="text" name="current_address" required>
+              </div>
+
+              <div class="full">
+                <label>Social Security Number (Required for Background Check)</label>
+                <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                  <input id="ssn" type="password" name="ssn" inputmode="numeric" autocomplete="off"
+                         pattern="\d{3}-\d{2}-\d{4}" maxlength="11" placeholder="XXX-XX-XXXX" required style="flex:1;min-width:240px">
+                  <button type="button" id="toggleSsn" class="btn-inline">Show</button>
+                </div>
+                <div class="file-note">Used solely for identity and background verification (including credit screening) in compliance with FCRA and Florida law.</div>
+              </div>
+
+              <div class="full">
+                <label>Confirm Social Security Number</label>
+                <input id="ssnConfirm" type="password" style="flex:1;min-width:240px" name="ssn_confirm" inputmode="numeric" autocomplete="off"
+                       pattern="\d{3}-\d{2}-\d{4}" maxlength="11" placeholder="XXX-XX-XXXX" required>
+              </div>
+
+              <div><label>Employer</label><input type="text" name="employer"></div>
+              <div><label>Monthly Income</label><input type="text" name="monthly_income" placeholder="$"></div>
+
+              <div class="full">
+                <label>Additional Notes (Optional)</label>
+                <textarea name="notes" placeholder="Anything you’d like us to know…"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <div class="section-title">Required Uploads</div>
+            <div class="grid">
+              <div class="full">
+                <label>Government Issued ID (Driver’s License or similar)</label>
+                <input type="file" name="id_upload" accept=".pdf,.jpg,.jpeg,.png,.heic" required>
+                <div class="file-note">Upload a clear photo/scan of a government-issued ID.</div>
+              </div>
+
+              <div class="full">
+                <label>Proof of Income (Choose ONE): Paystubs OR Bank Statement</label>
+                <input type="file" name="income_upload" accept=".pdf,.jpg,.jpeg,.png,.heic" required>
+                <div class="file-note">Upload one month of paystubs OR a recent bank statement (your choice).</div>
+              </div>
+
+              <div class="full">
+                <label>Pet Photo (Optional)</label>
+                <input type="file" name="pet_photo" accept=".jpg,.jpeg,.png,.heic">
+                <div class="file-note">Optional — only if you have a pet.</div>
+              </div>
+            </div>
+
+            <div class="notice">
+              By submitting this application, you authorize Come Home Realty Group to obtain consumer reports, including a credit report, and conduct background screening as permitted by law.
+            </div>
+          </section>
+
+          <div class="actions">
+            <button type="submit" class="btn">Submit Application</button>
+            <a class="btn secondary" href="https://www.comehomerealtygroup.com/">Return Home</a>
           </div>
-          <div>
-            <label>Last Name</label>
-            <input type="text" name="last_name" required>
+
+          <div class="small" style="margin-top:10px">
+            Tip: For best results, use PDF or clear photos for uploads.
           </div>
-        </div>
+        </form>
 
-        <label>Email</label>
-        <input type="email" name="email" required>
-
-        <label>Phone</label>
-        <input type="tel" name="phone" required>
-
-        <div class="row">
-          <div>
-            <label>Social Security Number</label>
-            <input type="text"
-                   name="ssn"
-                   pattern="\d{3}-\d{2}-\d{4}"
-                   placeholder="XXX-XX-XXXX"
-                   required>
-          </div>
-          <div>
-            <label>Confirm SSN</label>
-            <input type="text"
-                   name="ssn_confirm"
-                   pattern="\d{3}-\d{2}-\d{4}"
-                   placeholder="XXX-XX-XXXX"
-                   required>
-          </div>
-        </div>
-
-        <label>Current Address</label>
-        <input type="text" name="current_address" required>
-
-        <label>Upload Government Issued ID</label>
-        <input type="file" name="id_upload" required>
-
-        <label>Upload One Month Paystub OR Bank Statement</label>
-        <input type="file" name="income_upload" required>
-
-        <label>Pet Photo (Optional)</label>
-        <input type="file" name="pet_photo">
-
-        <div class="small">
-          By submitting this application, you authorize Come Home Realty Group to conduct background and credit checks as permitted by law.
-        </div>
-
-        <button type="submit" class="btn">Submit Application</button>
-
-      </form>
-
-    </div>
+      </div>
+    </main>
   </div>
+
+<script>
+/* SSN formatting + show/hide + confirmation check (keeps your original behavior) */
+(function(){
+  const ssn = document.getElementById("ssn");
+  const ssnC = document.getElementById("ssnConfirm");
+  const toggle = document.getElementById("toggleSsn");
+
+  function formatSSN(el){
+    let v = (el.value || "").replace(/\D/g,"").slice(0,9);
+    if(v.length > 5) el.value = v.slice(0,3)+"-"+v.slice(3,5)+"-"+v.slice(5);
+    else if(v.length > 3) el.value = v.slice(0,3)+"-"+v.slice(3);
+    else el.value = v;
+  }
+
+  if(ssn){
+    ssn.addEventListener("input", ()=>formatSSN(ssn));
+  }
+  if(ssnC){
+    ssnC.addEventListener("input", ()=>formatSSN(ssnC));
+  }
+  if(toggle && ssn && ssnC){
+    toggle.addEventListener("click", ()=>{
+      const isHidden = ssn.type === "password";
+      ssn.type = isHidden ? "text" : "password";
+      ssnC.type = isHidden ? "text" : "password";
+      toggle.textContent = isHidden ? "Hide" : "Show";
+    });
+  }
+
+  // Confirm SSN match
+  const form = document.querySelector('form[name="Rental Application"]');
+  if(form && ssn && ssnC){
+    form.addEventListener("submit", (e)=>{
+      if((ssn.value || "").trim() !== (ssnC.value || "").trim()){
+        e.preventDefault();
+        alert("SSN fields do not match. Please confirm and try again.");
+      }
+    });
+  }
+})();
+</script>
 </body>
 </html>
