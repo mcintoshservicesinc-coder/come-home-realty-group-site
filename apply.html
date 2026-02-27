@@ -114,7 +114,7 @@ button:hover{opacity:.92}
       action="/application-received.html">
 
 <input type="hidden" name="form-name" value="Rental Application">
-  <p style="display:none;">
+<p style="display:none;">
   <label>Don’t fill this out: <input name="bot-field"></label>
 </p>
 
@@ -192,14 +192,14 @@ placeholder="Re-enter SSN" required style="flex:1;min-width:240px">
 
 <div class="full">
 <label>Government Issued ID</label>
-<input type="file" name="government_id" required>
-<div class="file-note">JPG, PNG, or PDF</div>
+<input type="file" name="government_id" required accept=".pdf,.jpg,.jpeg,.png,.heic">
+<div class="file-note">PDF preferred. Accepted: JPG, PNG, HEIC, or PDF. Max 10MB per file.</div>
 </div>
 
 <div class="full">
 <label>Income Verification</label>
-<input type="file" name="income_verification" required>
-<div class="file-note">1 month paystubs OR bank statement</div>
+<input type="file" name="income_verification" required accept=".pdf,.jpg,.jpeg,.png,.heic">
+<div class="file-note">Upload 1 month paystubs OR a bank statement. Max 10MB per file.</div>
 </div>
 
 </div>
@@ -259,6 +259,8 @@ By submitting this application, you authorize Come Home Realty Group to obtain c
   });
 })();
 </script>
+
+<!-- File size limit: 10MB per file -->
 <script>
 (function(){
   const MAX_MB = 10;
@@ -288,5 +290,6 @@ By submitting this application, you authorize Come Home Realty Group to obtain c
   });
 })();
 </script>
+
 </body>
 </html>
