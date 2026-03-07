@@ -97,6 +97,41 @@ button:hover{opacity:.92}
   cursor: pointer;
 }
 .btn-inline:hover{background:#eef2f2}
+
+
+/* Unified header (shared across pages) */
+.site-header{
+  position:sticky; top:0; z-index:60;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header-row{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 0;
+}
+.brand{
+  display:flex; flex-direction:column; gap:6px;
+  text-decoration:none;
+  min-width:260px;
+}
+.brandmark{display:flex; flex-direction:column; line-height:1.05}
+.brandmark b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+.brandmark span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+.tagline{font-size:13px;color:var(--sub);max-width:520px}
+.main-nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
+.main-nav a{
+  font-size:14px;color:var(--sub);
+  padding:8px 10px;border-radius:999px;
+  text-decoration:none;
+  transition: background .2s ease, color .2s ease;
+}
+.main-nav a:hover{background:var(--muted);color:var(--charcoal)}
+@media (max-width: 980px){
+  .tagline{display:none}
+  .main-nav{display:none}
+}
+
 </style>
 </head>
 <body>
@@ -105,18 +140,8 @@ button:hover{opacity:.92}
 <h1>Rental Application</h1>
 <p class="lead">Complete the application below. All adult occupants (18+) must submit a separate application.</p>
 
-<!-- FIX: Relative action prevents Safari cross-domain POST issues -->
-<form name="Rental Application"
-      method="POST"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-      enctype="multipart/form-data"
-      action="/application-received.html">
-
+<form name="Rental Application" method="POST" data-netlify="true" enctype="multipart/form-data">
 <input type="hidden" name="form-name" value="Rental Application">
-<p style="display:none;">
-  <label>Don’t fill this out: <input name="bot-field"></label>
-</p>
 
 <section>
 <div class="section-title">Property Information</div>
@@ -129,42 +154,32 @@ button:hover{opacity:.92}
 <section>
 <div class="section-title">Applicant Information</div>
 <div class="grid">
-
 <div><label>Full Legal Name</label><input type="text" name="full_name" required></div>
 <div><label>Date of Birth</label><input type="date" name="dob" required></div>
 
 <div class="full">
-<label>Social Security Number (Required for Background Check)</label>
-<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-<input id="ssn" type="password" name="ssn"
-pattern="\d{3}-\d{2}-\d{4}" maxlength="11"
-placeholder="XXX-XX-XXXX" required style="flex:1;min-width:240px">
-<button type="button" id="toggleSsn" class="btn-inline">Show</button>
-</div>
-<div class="file-note">
-Used solely for identity and background verification (including credit screening) in compliance with FCRA and Florida law.
-</div>
+  <label>Social Security Number (Required for Background Check)</label>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+    <input id="ssn" type="password" name="ssn" inputmode="numeric" autocomplete="off"
+           pattern="\d{3}-\d{2}-\d{4}" maxlength="11" placeholder="XXX-XX-XXXX" required style="flex:1;min-width:240px">
+    <button type="button" id="toggleSsn" class="btn-inline">Show</button>
+  </div>
+  <div class="file-note">Used solely for identity and background verification (including credit screening) in compliance with FCRA and Florida law.</div>
 </div>
 
 <div class="full">
-<label>Confirm Social Security Number</label>
-<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
-<input id="ssnConfirm" type="password" name="ssn_confirm"
-pattern="\d{3}-\d{2}-\d{4}" maxlength="11"
-placeholder="Re-enter SSN" required style="flex:1;min-width:240px">
-<button type="button" id="toggleSsnConfirm" class="btn-inline">Show</button>
+  <label>Confirm Social Security Number</label>
+  <input id="ssnConfirm" type="password" style="flex:1;min-width:240px" name="ssn_confirm" inputmode="numeric" autocomplete="off"
+         pattern="\d{3}-\d{2}-\d{4}" maxlength="11" placeholder="Re-enter SSN" required>
+  <div class="file-note">Must match the SSN entered above.</div><button type="button" id="toggleSsnConfirm" class="btn-inline">Show</button></div>
 </div>
-<div class="file-note">Must match the SSN entered above.</div>
-</div>
+
 
 <div><label>Phone Number</label><input type="tel" name="phone" required></div>
 <div><label>Email</label><input type="email" name="email" required></div>
-
 <div class="full"><label>Current Address</label><input type="text" name="current_address" required></div>
-
 <div><label>Time at Current Residence</label><input type="text" name="residence_time"></div>
 <div><label>Landlord / Property Manager</label><input type="text" name="landlord_name"></div>
-
 </div>
 </section>
 
@@ -174,8 +189,7 @@ placeholder="Re-enter SSN" required style="flex:1;min-width:240px">
 <div><label>Employer</label><input type="text" name="employer" required></div>
 <div><label>Position / Title</label><input type="text" name="position"></div>
 <div><label>Monthly Gross Income</label><input type="number" name="income" required></div>
-<div>
-<label>Pay Frequency</label>
+<div><label>Pay Frequency</label>
 <select name="pay_frequency">
 <option>Weekly</option>
 <option>Bi-Weekly</option>
@@ -187,31 +201,56 @@ placeholder="Re-enter SSN" required style="flex:1;min-width:240px">
 </section>
 
 <section>
+<div class="section-title">Background Disclosure</div>
+<div class="grid">
+<div><label>Prior Evictions?</label>
+<select name="evictions"><option>No</option><option>Yes</option></select></div>
+<div><label>Bankruptcy?</label>
+<select name="bankruptcy"><option>No</option><option>Yes</option></select></div>
+<div><label>Felony Charges?</label>
+<select name="felony"><option>No</option><option>Yes</option></select></div>
+<div><label>Drug-Related Charges?</label>
+<select name="drug_charges"><option>No</option><option>Yes</option></select></div>
+</div>
+</section>
+
+<section>
+<div class="section-title">Pets (Optional)</div>
+<div class="grid">
+<div><label>Do You Have Pets?</label>
+<select name="pets"><option>No</option><option>Yes</option></select></div>
+<div><label>Breed / Type</label><input type="text" name="pet_type"></div>
+<div class="full">
+<label>Upload Pet Photo (Optional)</label>
+<input type="file" name="pet_photo" accept="image/*">
+</div>
+</div>
+</section>
+
+<section>
 <div class="section-title">Required Uploads</div>
 <div class="grid">
-
 <div class="full">
-<label>Government Issued ID</label>
-<input type="file" name="government_id" required accept=".pdf,.jpg,.jpeg,.png,.heic">
-<div class="file-note">PDF preferred. Accepted: JPG, PNG, HEIC, or PDF. Max 10MB per file.</div>
+<label>Government Issued ID (Driver's License or Similar)</label>
+<input type="file" name="government_id" required>
+<div class="file-note">Accepted: JPG, PNG, or PDF</div>
 </div>
 
 <div class="full">
-<label>Income Verification</label>
-<input type="file" name="income_verification" required accept=".pdf,.jpg,.jpeg,.png,.heic">
-<div class="file-note">Upload 1 month paystubs OR a bank statement. Max 10MB per file.</div>
+<label>Income Verification (1 Month Paystubs OR Bank Statement)</label>
+<input type="file" name="income_verification" required>
+<div class="file-note">Upload whichever you prefer</div>
 </div>
-
 </div>
 </section>
 
 <section>
 <div class="section-title">Authorization & Consent</div>
 <div class="consent-box">
-By submitting this application, you authorize Come Home Realty Group to obtain consumer reports including a credit report, criminal background, eviction, employment, and rental history in compliance with the Fair Credit Reporting Act (FCRA) and applicable Florida law.
+By submitting this application, you authorize Come Home Realty Group to verify all information provided and obtain consumer reports including a credit report, criminal background, eviction, employment, and rental history in compliance with the Fair Credit Reporting Act (FCRA) and applicable Florida law. Submission does not guarantee approval. Application fees are non-refundable.
 </div>
 <br>
-<label><input type="checkbox" name="consent" required> I acknowledge and consent.</label>
+<label><input type="checkbox" name="consent" required> I acknowledge and consent to background and credit verification.</label>
 </section>
 
 <section>
@@ -221,25 +260,45 @@ By submitting this application, you authorize Come Home Realty Group to obtain c
 </form>
 </div>
 
+
 <script>
 (function(){
   const ssn = document.getElementById("ssn");
   const ssnConfirm = document.getElementById("ssnConfirm");
+  const toggle = document.getElementById("toggleSsn");
+
+  if(toggle && ssn){
+    toggle.addEventListener("click", () => {
+      const isHidden = ssn.type === "password";
+      ssn.type = isHidden ? "text" : "password";
+      if(ssnConfirm) ssnConfirm.type = ssn.type;
+      toggle.textContent = isHidden ? "Hide" : "Show";
+    });
+  }
 
   function normalize(v){ return (v || "").replace(/[^0-9]/g, ""); }
 
-  function validate(){
-    const a = normalize(ssn.value);
-    const b = normalize(ssnConfirm.value);
-    if(a && b && a !== b){
-      ssnConfirm.setCustomValidity("SSN fields must match.");
-    } else {
-      ssnConfirm.setCustomValidity("");
+  const form = document.querySelector("form[name='Rental Application']");
+  if(form && ssn && ssnConfirm){
+    function validateMatch(){
+      const a = normalize(ssn.value);
+      const b = normalize(ssnConfirm.value);
+      if(a && b && a !== b){
+        ssnConfirm.setCustomValidity("SSN fields must match.");
+      } else {
+        ssnConfirm.setCustomValidity("");
+      }
     }
+    ssn.addEventListener("input", validateMatch);
+    ssnConfirm.addEventListener("input", validateMatch);
+    form.addEventListener("submit", (e) => {
+      validateMatch();
+      if(!form.checkValidity()){
+        // Let browser show validation UI
+        return;
+      }
+    });
   }
-
-  ssn.addEventListener("input", validate);
-  ssnConfirm.addEventListener("input", validate);
 })();
 </script>
 
@@ -247,49 +306,53 @@ By submitting this application, you authorize Come Home Realty Group to obtain c
 (function(){
   const ssn = document.getElementById("ssn");
   const ssnConfirm = document.getElementById("ssnConfirm");
-  const toggle1 = document.getElementById("toggleSsn");
-  const toggle2 = document.getElementById("toggleSsnConfirm");
+  const toggleConfirm = document.getElementById("toggleSsnConfirm");
 
-  toggle1.addEventListener("click", ()=>{
-    ssn.type = ssn.type === "password" ? "text" : "password";
-  });
-
-  toggle2.addEventListener("click", ()=>{
-    ssnConfirm.type = ssnConfirm.type === "password" ? "text" : "password";
-  });
+  if(toggleConfirm && ssnConfirm){
+    toggleConfirm.addEventListener("click", () => {
+      const hidden = ssnConfirm.type === "password";
+      ssnConfirm.type = hidden ? "text" : "password";
+      toggleConfirm.textContent = hidden ? "Hide" : "Show";
+    });
+  }
 })();
 </script>
 
-<!-- File size limit: 10MB per file -->
 <script>
 (function(){
-  const MAX_MB = 10;
-  const MAX_BYTES = MAX_MB * 1024 * 1024;
-
-  const inputs = [
-    document.querySelector('input[name="government_id"]'),
-    document.querySelector('input[name="income_verification"]'),
-    document.querySelector('input[name="pet_photo"]')
-  ].filter(Boolean);
-
-  function checkFiles(input){
-    const files = input.files;
-    if(!files || !files.length) return;
-
-    for (const f of files){
-      if (f.size > MAX_BYTES){
-        input.value = "";
-        alert(`That file is too large. Please upload a file under ${MAX_MB}MB.`);
-        return;
-      }
-    }
+  function formatSSN(value){
+    const digits = (value || "").replace(/\D/g, "").slice(0,9);
+    const a = digits.slice(0,3);
+    const b = digits.slice(3,5);
+    const c = digits.slice(5,9);
+    if(digits.length <= 3) return a;
+    if(digits.length <= 5) return a + "-" + b;
+    return a + "-" + b + "-" + c;
   }
 
-  inputs.forEach(input => {
-    input.addEventListener("change", () => checkFiles(input));
-  });
+  function wire(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.addEventListener("input", () => {
+      const start = el.selectionStart || 0;
+      const before = el.value;
+      el.value = formatSSN(before);
+      // Best-effort caret handling (keeps typing natural in most browsers)
+      const diff = el.value.length - before.length;
+      el.setSelectionRange(start + diff, start + diff);
+    });
+    el.addEventListener("blur", () => {
+      // Ensure final format on blur
+      el.value = formatSSN(el.value);
+    });
+  }
+
+  wire("ssn");
+  wire("ssnConfirm");
 })();
 </script>
-
 </body>
 </html>
+
+
+
