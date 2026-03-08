@@ -1,339 +1,535 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Home Watch Services | Come Home Realty Group</title>
-<meta name="description" content="Home Watch services for snowbirds, second homes, vacation travel, and extended absences across Florida." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home Watch Services | Come Home Realty Group</title>
+  <meta name="description" content="Home Watch services for snowbirds, second homes, vacation travel, and extended absences across Florida." />
+  <style>
+    :root{
+      --charcoal:#222C2C;
+      --green:#4A6B54;
+      --bg:#FFFFFF;
+      --muted:#F5F7F7;
+      --muted2:#F1F4F4;
+      --text:#222C2C;
+      --sub:#445050;
+      --border:#E6ECEC;
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.08);
+      --radius:20px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:999px;
+      border:1px solid var(--charcoal);
+      background:var(--charcoal);color:#fff;
+      font-weight:650;letter-spacing:.2px;
+      gap:10px;
+      box-shadow: var(--shadow2);
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow)}
+    .btn.secondary{background:#fff;color:var(--charcoal);box-shadow:none}
+    .btn.secondary:hover{background:var(--muted); transform:none}
+    .btn.green{background:var(--green);border-color:var(--green)}
+    .btn.green:hover{background:#3f5f4b}
+    section{padding:72px 0}
+    .alt{background:var(--muted)}
+    .alt2{background:var(--muted2)}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:22px}
+    .section-head h2{margin:0;font-size:32px;letter-spacing:-.4px}
+    .section-head p{margin:0;color:var(--sub);max-width:760px}
+    .box,.card,.plan,.info-panel,.checklist-box{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    .box,.card,.plan,.info-panel,.checklist-box,form{padding:22px}
+    .list{margin:0;padding-left:18px;color:var(--sub)}
+    .list li{margin:8px 0}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card h3,.plan h3,.box h3,.info-panel h3,.checklist-box h3{margin:0 0 8px}
+    .card p,.plan p,.box p,.info-panel p{margin:0;color:var(--sub)}
+    .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--green);font-weight:780;letter-spacing:.7px;text-transform:uppercase;margin-bottom:10px}
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--green);display:inline-block}
+    .hero{
+      position:relative;
+      padding:120px 0 88px;
+      color:#fff;
+      background:
+        linear-gradient(180deg, rgba(34,44,44,.70), rgba(34,44,44,.86)),
+        radial-gradient(1000px 420px at 20% 20%, rgba(74,107,84,.25), transparent 55%);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:url('assets/hero.jpg');
+      background-size:cover;
+      background-position:center;
+      opacity:.42;
+      filter:saturate(1.05) contrast(1.03);
+    }
+    .hero .wrap{position:relative}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1px solid rgba(255,255,255,.20);
+      background:rgba(255,255,255,.10);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:12px;
+      font-weight:780;
+      text-transform:uppercase;
+      letter-spacing:.7px;
+    }
+    h1{margin:16px 0 12px;font-size:52px;line-height:1.02;letter-spacing:-1px}
+    .lead{color:rgba(255,255,255,.88);font-size:18px;margin:0 0 18px;max-width:760px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+    .hero .btn.secondary{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.22)}
+    .hero .btn.secondary:hover{background:rgba(255,255,255,.18)}
+    .panel{
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.09);
+      padding:22px;
+      box-shadow:0 18px 40px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+    }
+    .panel h3{margin:0 0 12px;font-size:18px;color:#fff}
+    .panel ul{margin:0;padding-left:18px;color:rgba(255,255,255,.90)}
+    .panel li{margin:9px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .price{font-size:34px;font-weight:800;color:var(--green);margin:8px 0 10px}
+    .small{font-size:14px;color:var(--sub)}
+    .badge{display:inline-flex;padding:7px 10px;border-radius:999px;background:var(--muted);color:var(--green);font-size:12px;font-weight:780;letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px}
+    .checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .contact{
+      background:
+        radial-gradient(900px 340px at 10% 20%, rgba(74,107,84,.14), transparent 55%),
+        radial-gradient(900px 340px at 90% 10%, rgba(34,44,44,.08), transparent 55%);
+      border-top:1px solid var(--border);
+    }
+    form{display:grid;gap:12px;border:1px solid var(--border);background:#fff;border-radius:var(--radius);box-shadow: var(--shadow2)}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-size:13px;color:var(--sub);font-weight:650}
+    input, textarea, select{width:100%;border:1px solid var(--border);border-radius:12px;padding:12px 12px;font-size:15px;outline:none;}
+    input:focus, textarea:focus, select:focus{border-color:rgba(74,107,84,.55);box-shadow:0 0 0 4px rgba(74,107,84,.12)}
+    textarea{min-height:120px;resize:vertical}
+    .form-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+    footer{border-top:1px solid var(--border);padding:22px 0;color:var(--sub);font-size:14px}
+    .foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .foot a{color:var(--sub);text-decoration:underline;text-underline-offset:3px}
 
-<!-- STYLES (UNCHANGED FROM YOUR FILE) -->
-<style>
-/* Your entire existing CSS remains exactly the same */
-:root{
---charcoal:#222C2C;
---green:#4A6B54;
---bg:#FFFFFF;
---muted:#F5F7F7;
---muted2:#F1F4F4;
---text:#222C2C;
---sub:#445050;
---border:#E6ECEC;
---shadow: 0 16px 34px rgba(0,0,0,.10);
---shadow2: 0 10px 24px rgba(0,0,0,.08);
---radius:20px;
---max:1140px;
-}
+    .site-header{
+      position:sticky; top:0; z-index:60;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .header-row{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; flex-direction:column; gap:6px; text-decoration:none; min-width:260px}
+    .brandmark{display:flex; flex-direction:column; line-height:1.05}
+    .brandmark b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+    .brandmark span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+    .tagline{font-size:13px;color:var(--sub);max-width:520px}
+    .main-nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
+    .main-nav a{font-size:14px;color:var(--sub);padding:8px 10px;border-radius:999px;text-decoration:none;transition: background .2s ease, color .2s ease}
+    .main-nav a:hover{background:var(--muted);color:var(--charcoal)}
+    .nav-cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 
-/* (all of your existing CSS continues exactly as written) */
-</style>
+    .photo-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:18px;
+    }
+    .photo-card{
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      background:#fff;
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+    }
+    .photo-card img{
+      width:100%;
+      height:280px;
+      object-fit:cover;
+      display:block;
+    }
+    .photo-caption{
+      padding:14px 16px;
+      color:var(--sub);
+      font-size:14px;
+    }
+
+    @media (max-width: 980px){
+      .tagline,.main-nav{display:none}
+      .hero-grid,.cards,.grid-2,.plan-grid,.checklist,.form-grid,.row,.photo-grid{grid-template-columns:1fr}
+      h1{font-size:40px}
+    }
+  </style>
 </head>
-
 <body>
-
-<!-- HEADER (UNCHANGED) -->
-<header class="site-header">
-<div class="wrap">
-<div class="header-row">
-
-<a class="brand" href="./index.html">
-<div class="brandmark">
-<b>COME HOME</b>
-<span>REALTY GROUP</span>
-</div>
-<div class="tagline">Helping investors buy homes — and helping renters find homes to make their own.</div>
-</a>
-
-<nav class="main-nav">
-<a href="./index.html">Home</a>
-<a href="./home-watch.html">Home Watch</a>
-<a href="./homes.html">Listings</a>
-<a href="./investors.html">For Investors</a>
-<a href="./renters.html">For Renters</a>
-<a href="./apply.html">Apply</a>
-</nav>
-
-<div class="nav-cta">
-<a class="btn secondary" href="#contact">Contact</a>
-<a class="btn green" href="#contact">Free Inspection</a>
-</div>
-
-</div>
-</div>
-</header>
-
-<main>
-
-<!-- HERO (UNCHANGED) -->
-<section class="hero">
-<div class="wrap hero-grid">
-
-<div>
-<div class="eyebrow"><span class="dot"></span> Home Watch Services</div>
-
-<h1>Professional property check-ins while you are away</h1>
-
-<p class="lead">
-<strong>Come Home Realty Group, in collaboration with Complete Space Renovations, is proud to offer Home Watch services</strong>
-for homeowners who will be away from their property for an extended period.
-</p>
-
-<p class="lead">
-Whether you are a seasonal resident, traveling for vacation, away for work,
-managing a second home, or leaving a property vacant between tenants,
-we help protect your home with scheduled in-person checks and clear photo updates.
-</p>
-
-<p class="lead">
-<strong>Perfect for snowbirds, vacation travel, second homes, vacant listings, and extended absences.</strong>
-</p>
-
-<div class="hero-actions">
-<a class="btn green" href="#contact">Schedule a Free Departure Inspection</a>
-<a class="btn secondary" href="#checklist">View Inspection Checklist</a>
-</div>
-
-</div>
-
-<aside class="panel">
-<h3>What is included</h3>
-<ul>
-<li>Exterior walkthrough and visual inspection</li>
-<li>Interior checks for leaks, moisture, and unusual issues</li>
-<li>Flush toilets and run sinks or showers</li>
-<li>Check AC operation and thermostat</li>
-<li>Bring in flyers or visible packages</li>
-<li>Photo report after each visit</li>
-<li>Fast notification if attention is needed</li>
-</ul>
-</aside>
-
-</div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-<div class="wrap">
-<div class="section-head">
-<div>
-<h2>Why Home Watch matters</h2>
-<p>When a property sits empty, small issues can turn into expensive repairs.</p>
-</div>
-</div>
-
-<div class="cards">
-<div class="card">
-<div class="tag"><span class="dot"></span> Exterior</div>
-<h3>Visible condition checks</h3>
-<p>Walk the property, check doors and windows, and look for storm damage.</p>
-</div>
-
-<div class="card">
-<div class="tag"><span class="dot"></span> Interior</div>
-<h3>Routine interior checks</h3>
-<p>Flush toilets, run water, check sinks, thermostat and moisture concerns.</p>
-</div>
-
-<div class="card">
-<div class="tag"><span class="dot"></span> Reporting</div>
-<h3>Photo updates after visits</h3>
-<p>Clients receive visit reports and photos after each inspection.</p>
-</div>
-</div>
-</div>
-</section>
-
-<!-- PRICING -->
-<section class="alt" id="pricing">
-<div class="wrap">
-<div class="section-head">
-<h2>Simple plans</h2>
-</div>
-
-<div class="plan-grid">
-
-<div class="plan">
-<div class="badge">Basic</div>
-<h3>Weekly Plan</h3>
-<div class="price">$180 <span class="small">/ month</span></div>
-<p>One visit per week.</p>
-</div>
-
-<div class="plan">
-<div class="badge">Most Popular</div>
-<h3>Premium Plan</h3>
-<div class="price">$320 <span class="small">/ month</span></div>
-<p>Two visits per week.</p>
-</div>
-
-<div class="plan">
-<div class="badge">As Needed</div>
-<h3>Storm Check</h3>
-<div class="price">$75 <span class="small">/ visit</span></div>
-<p>Post storm inspection.</p>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- OPTIONAL ADD ONS -->
-<section class="alt2">
-<div class="wrap">
-<div class="section-head">
-<h2>Optional add-on services</h2>
-</div>
-
-<div class="grid-2">
-
-<div class="box">
-<ul class="list">
-<li>Hurricane prep coordination</li>
-<li>Meet contractors or deliveries</li>
-<li>Water plants</li>
-<li>Start vehicles</li>
-</ul>
-</div>
-
-<div class="box">
-<ul class="list">
-<li>Emergency visits</li>
-<li>Vacant listing checks</li>
-<li>Second home monitoring</li>
-<li>Repair coordination when issues are found</li>
-</ul>
-</div>
-
-</div>
-</div>
-</section>
-
-<!-- NEW COMPLETE SPACE RENOVATIONS SECTION -->
-<section>
-<div class="wrap">
-
-<div class="section-head">
-<div>
-<h2>Additional support through Complete Space Renovations</h2>
-
-<p>
-<strong>Come Home Realty Group, in collaboration with Complete Space Renovations, is proud to offer Home Watch services</strong>
-backed by practical repair and maintenance support.
-If we discover an issue during a visit, we can often help move things forward quickly.
-</p>
-</div>
-</div>
-
-<div class="grid-2">
-
-<div class="box">
-<div class="tag"><span class="dot"></span> Repairs</div>
-<h3>Same-day repair estimates</h3>
-
-<p>
-If an issue is discovered during a Home Watch visit,
-we can often provide a free repair estimate the same day and help coordinate next steps.
-</p>
-
-<ul class="list">
-<li>Minor repairs</li>
-<li>Property maintenance</li>
-<li>Damage assessments</li>
-<li>Repair coordination while you are away</li>
-</ul>
-
-</div>
-
-<div class="box">
-<div class="tag"><span class="dot"></span> Maintenance</div>
-<h3>Optional property care add-ons</h3>
-
-<p>
-Many homeowners choose to add maintenance services while they are away to keep the property in great condition.
-</p>
-
-<ul class="list">
-<li>Lawn care coordination</li>
-<li>Vehicle starts for extended absences</li>
-<li>AC filter replacement</li>
-<li>Arm &amp; Hammer refrigerator and freezer pack replacement</li>
-<li>Pest control service through TW Pest Control</li>
-</ul>
-
-</div>
-
-</div>
-
-<div class="box" style="margin-top:18px">
-
-<div class="tag"><span class="dot"></span> Why this matters</div>
-
-<h3>More than just checking on your home</h3>
-
-<p>
-Many Home Watch companies only report problems.
-Our collaboration with Complete Space Renovations allows us to go further.
-Instead of simply notifying you, we can help coordinate solutions so your property stays protected while you are away.
-</p>
-
-</div>
-
-</div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact">
-<div class="wrap">
-
-<div class="section-head">
-<h2>Request your free departure inspection</h2>
-</div>
-
-<div class="form-grid">
-
-<form>
-<input placeholder="Name">
-<input placeholder="Email">
-<input placeholder="Phone">
-<textarea placeholder="Tell us how we can help"></textarea>
-
-<button class="btn green">Send</button>
-</form>
-
-<div class="info-panel">
-
-<h3>Why choose us</h3>
-
-<p>
-Because Come Home Realty Group works in collaboration with Complete Space Renovations,
-clients are not just getting eyes on the property.
-They are working with a team that understands homes and repairs.
-</p>
-
-<ul class="list">
-<li>Snowbirds</li>
-<li>Vacation travel</li>
-<li>Extended absences</li>
-<li>Second homes</li>
-<li>Vacant properties for sale</li>
-</ul>
-
-</div>
-
-</div>
-</div>
-</section>
-
-</main>
-
-<footer>
-<div class="wrap foot">
-<div>© <span id="y"></span> Come Home Realty Group</div>
-</div>
-</footer>
-
-<script>
-document.getElementById("y").textContent = new Date().getFullYear();
-</script>
-
+  <header class="site-header">
+    <div class="wrap">
+      <div class="header-row">
+        <a class="brand" href="./index.html" aria-label="Come Home Realty Group home">
+          <div class="brandmark">
+            <b>COME HOME</b>
+            <span>REALTY GROUP</span>
+          </div>
+          <div class="tagline">Helping investors buy homes — and helping renters find homes to make their own.</div>
+        </a>
+
+        <nav class="main-nav" aria-label="Primary">
+          <a href="./index.html">Home</a>
+          <a href="./home-watch.html">Home Watch</a>
+          <a href="./homes.html">Listings</a>
+          <a href="./investors.html">For Investors</a>
+          <a href="./renters.html">For Renters</a>
+          <a href="./apply.html">Apply</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn secondary" href="#contact">Contact</a>
+          <a class="btn green" href="#contact">Free Inspection</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow"><span class="dot"></span> Home Watch Services</div>
+          <h1>Professional property check-ins while you are away</h1>
+          <p class="lead"><strong>Come Home Realty Group, in collaboration with Complete Space Renovations, is proud to offer Home Watch services</strong> for homeowners who will be away from their property for an extended period.</p>
+          <p class="lead">Whether you are a seasonal resident, traveling for vacation, away for work, managing a second home, or leaving a property vacant between tenants, we help protect your home with scheduled in-person checks and clear photo updates.</p>
+          <p class="lead"><strong>Perfect for snowbirds, vacation travel, second homes, vacant listings, and extended absences.</strong></p>
+          <div class="hero-actions">
+            <a class="btn green" href="#contact">Schedule a Free Departure Inspection</a>
+            <a class="btn secondary" href="#checklist">View Inspection Checklist</a>
+          </div>
+        </div>
+        <aside class="panel">
+          <h3>What is included</h3>
+          <ul>
+            <li>Exterior walkthrough and visual inspection</li>
+            <li>Interior checks for leaks, moisture, and unusual issues</li>
+            <li>Flush toilets and run sinks or showers</li>
+            <li>Check AC operation and thermostat</li>
+            <li>Bring in flyers or visible packages</li>
+            <li>Photo report after each visit</li>
+            <li>Fast notification if attention is needed</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Why Home Watch matters</h2>
+            <p>When a property sits empty, small issues can turn into expensive repairs. Regular in-person checks help catch problems early and give owners peace of mind while away.</p>
+          </div>
+        </div>
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Exterior</div>
+            <h3>Visible condition checks</h3>
+            <p>Walk the property, check doors and windows, look for storm damage, flyers, packages, standing water, and visible pest concerns.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Interior</div>
+            <h3>Routine interior checks</h3>
+            <p>Flush toilets, run water, check under sinks, verify thermostat settings, and note unusual odors, moisture, or visible mold concerns.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Reporting</div>
+            <h3>Photo updates after visits</h3>
+            <p>After each visit, clients receive a clear summary and photos so they know the current condition of the property.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt2">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Home Watch in action</h2>
+            <p>During each visit we check critical areas of the property to help ensure everything remains safe and functioning properly while you are away.</p>
+          </div>
+        </div>
+
+        <div class="photo-grid">
+          <div class="photo-card">
+            <img src="assets/homewatch-exterior.jpg" alt="Exterior home inspection">
+            <div class="photo-caption">Exterior property inspections help catch visible issues early.</div>
+          </div>
+
+          <div class="photo-card">
+            <img src="assets/homewatch-thermostat.jpg" alt="Checking thermostat and AC">
+            <div class="photo-caption">Thermostat and AC checks help protect the home while vacant.</div>
+          </div>
+
+          <div class="photo-card">
+            <img src="assets/homewatch-water.jpg" alt="Running water in sink during property check">
+            <div class="photo-caption">Running water and checking fixtures supports routine home care.</div>
+          </div>
+
+          <div class="photo-card">
+            <img src="assets/homewatch-lawn.jpg" alt="Property lawn maintenance">
+            <div class="photo-caption">Optional upkeep services help maintain curb appeal and property condition.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt" id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Simple plans</h2>
+            <p>You can adjust pricing later, but this gives you a clean starting point for the website.</p>
+          </div>
+        </div>
+        <div class="plan-grid">
+          <div class="plan">
+            <div class="badge">Basic</div>
+            <h3>Weekly Plan</h3>
+            <div class="price">$180 <span class="small">/ month</span></div>
+            <p>One visit per week with photo updates and visit reporting.</p>
+          </div>
+          <div class="plan">
+            <div class="badge">Most Popular</div>
+            <h3>Premium Plan</h3>
+            <div class="price">$320 <span class="small">/ month</span></div>
+            <p>Two visits per week for added peace of mind and more frequent check-ins.</p>
+          </div>
+          <div class="plan">
+            <div class="badge">As Needed</div>
+            <h3>Storm Check</h3>
+            <div class="price">$75 <span class="small">/ visit</span></div>
+            <p>Post-storm visual property check with photos and a follow-up summary.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="checklist">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Home Watch inspection checklist</h2>
+            <p>This makes the service look professional to clients and helps keep every visit consistent.</p>
+          </div>
+        </div>
+        <div class="checklist">
+          <div class="checklist-box">
+            <h3>Exterior</h3>
+            <ul class="list">
+              <li>Front door secure</li>
+              <li>Rear and side doors secure</li>
+              <li>Windows appear secure</li>
+              <li>No visible storm damage</li>
+              <li>No concerning pest activity</li>
+              <li>No unexpected flyers or buildup</li>
+              <li>No standing water observed</li>
+              <li>No obvious exterior damage noted</li>
+            </ul>
+          </div>
+          <div class="checklist-box">
+            <h3>Interior</h3>
+            <ul class="list">
+              <li>Flush all toilets</li>
+              <li>Run sinks and showers briefly</li>
+              <li>No visible leaks under sinks</li>
+              <li>AC operating normally</li>
+              <li>Thermostat set properly</li>
+              <li>No unusual odors</li>
+              <li>No visible mold or moisture concerns</li>
+              <li>Appliances and breakers appear normal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt2">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Optional add-on services</h2>
+            <p>These can help you increase revenue and create a smoother experience for clients.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="box">
+            <ul class="list">
+              <li>Hurricane prep coordination</li>
+              <li>Meet contractors or deliveries</li>
+              <li>Water plants</li>
+              <li>Start vehicles</li>
+            </ul>
+          </div>
+          <div class="box">
+            <ul class="list">
+              <li>Emergency visits</li>
+              <li>Vacant listing checks</li>
+              <li>Second home monitoring</li>
+              <li>Repair coordination when issues are found</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Additional support through Complete Space Renovations</h2>
+            <p><strong>Come Home Realty Group, in collaboration with Complete Space Renovations, is proud to offer Home Watch services</strong> backed by practical repair and maintenance support. If we discover an issue during a visit, we can often help move things forward quickly.</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="box">
+            <div class="tag"><span class="dot"></span> Repairs</div>
+            <h3>Same-day repair estimates</h3>
+            <p>If an issue is discovered during a Home Watch visit, we can often provide a free repair estimate the same day and help coordinate the next steps through Complete Space Renovations.</p>
+            <ul class="list">
+              <li>Minor repairs</li>
+              <li>Property maintenance</li>
+              <li>Damage assessments</li>
+              <li>Repair coordination while you are away</li>
+            </ul>
+          </div>
+
+          <div class="box">
+            <div class="tag"><span class="dot"></span> Maintenance</div>
+            <h3>Optional property care add-ons</h3>
+            <p>Many homeowners choose to add small maintenance services while they are away to keep their property in great condition.</p>
+            <ul class="list">
+              <li>Lawn care coordination</li>
+              <li>Vehicle starts for extended absences</li>
+              <li>AC filter replacement</li>
+              <li>Arm &amp; Hammer refrigerator and freezer pack replacement</li>
+              <li>Pest control service through TW Pest Control</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="box" style="margin-top:16px;">
+          <div class="tag"><span class="dot"></span> Why this matters</div>
+          <h3>More than just checking on your home</h3>
+          <p>Many Home Watch companies only report problems. Our collaboration with Complete Space Renovations means we can help take the next step if something needs attention. Instead of simply notifying you, we can help coordinate solutions so your property stays protected while you are away.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Request your free departure inspection</h2>
+            <p>This page includes its own contact form so visitors can reach out directly about Home Watch services.</p>
+          </div>
+        </div>
+        <div class="form-grid">
+          <form>
+            <div class="row">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" placeholder="Your name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" />
+              </div>
+            </div>
+            <div class="row">
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" placeholder="(555) 555-5555" />
+              </div>
+              <div>
+                <label for="reason">Reason for service</label>
+                <select id="reason" name="reason">
+                  <option value="" selected>Select one…</option>
+                  <option>Seasonal / Snowbird</option>
+                  <option>Vacation / Travel</option>
+                  <option>Second Home</option>
+                  <option>Vacant Listing</option>
+                  <option>Work Travel</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="property">Property address</label>
+              <input id="property" name="property" placeholder="Property address" />
+            </div>
+            <div>
+              <label for="message">How can we help?</label>
+              <textarea id="message" name="message" placeholder="Tell us when you will be away, how often you want checks, and any concerns about the property."></textarea>
+            </div>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+              <button class="btn green" type="button" onclick="alert('Preview only. Netlify form wiring comes next.')">Send</button>
+              <span style="color:var(--sub);font-size:14px">Prefer email? <span style="text-decoration:underline;text-underline-offset:3px">info@yourdomain.com</span></span>
+            </div>
+          </form>
+
+          <div class="info-panel">
+            <h3>Why choose us</h3>
+            <p>Because Come Home Realty Group works in collaboration with Complete Space Renovations, clients are not just getting eyes on the property. They are working with a team that understands homes, condition issues, and repair coordination.</p>
+            <h3 style="margin-top:18px">Good fit for</h3>
+            <ul class="list">
+              <li>Snowbirds</li>
+              <li>Vacation travel</li>
+              <li>Extended absences</li>
+              <li>Second homes</li>
+              <li>Vacant properties for sale</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="y"></span> Come Home Realty Group. All rights reserved.</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="./index.html">Home</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
