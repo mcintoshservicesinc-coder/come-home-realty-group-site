@@ -694,7 +694,70 @@ section{padding:70px 0}
       </div>
     </section>
 
-    V
+    <section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <h2>Start the conversation</h2>
+        <p>Tell us what you’re buying, building, or managing — we’ll respond with next steps.</p>
+      </div>
+    </div>
+
+    <form name="Contact Form"
+          method="POST"
+          data-netlify="true"
+          action="/contact-received.html">
+
+      <input type="hidden" name="form-name" value="Contact Form">
+
+      <div class="row">
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" placeholder="(555) 555-5555" />
+        </div>
+        <div>
+          <label for="focus">Primary focus</label>
+          <select id="focus" name="focus">
+            <option value="" selected>Select one…</option>
+            <option>Buy & Hold Rentals</option>
+            <option>Value-Add / Renovation</option>
+            <option>Flip & Resale</option>
+            <option>Wholesale Opportunities</option>
+            <option>Property Management Only</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="message">What are you looking to do?</label>
+        <textarea id="message" name="message" placeholder="Example: Buying 2–4 SFRs in Central Florida for long-term rentals. Need acquisition support + renovation coordination + management." required></textarea>
+      </div>
+
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <button class="btn green" type="submit">Send</button>
+        <span style="color:var(--sub);font-size:14px">
+          Prefer email?
+          <a href="mailto:inquire@comehomerealtygroup.com"
+             style="text-decoration:underline;text-underline-offset:3px;color:inherit">
+            investors@comehomerealtygroup.com
+          </a>
+        </span>
+      </div>
+
+    </form>
+  </div>
+</section>
   </main>
 
   <footer>
