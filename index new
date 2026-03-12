@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Come Home Realty Group | Preview with Photos</title>
+  <meta name="description" content="Florida Residential Investment & Property Management for national investors." />
+  <style>
+    :root{
+      --charcoal:#222C2C;
+      --green:#4A6B54;
+      --bg:#FFFFFF;
+      --muted:#F5F7F7;
+      --muted2:#F1F4F4;
+      --text:#222C2C;
+      --sub:#445050;
+      --border:#E6ECEC;
+      --shadow: 0 16px 34px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.08);
+      --radius:20px;
+      --max:1140px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:12px 16px;border-radius:999px;
+      border:1px solid var(--charcoal);
+      background:var(--charcoal);color:#fff;
+      font-weight:650;letter-spacing:.2px;
+      gap:10px;
+      box-shadow: var(--shadow2);
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow)}
+    .btn.secondary{background:#fff;color:var(--charcoal);box-shadow:none}
+    .btn.secondary:hover{background:var(--muted); transform:none}
+    .btn.green{background:var(--green);border-color:var(--green)}
+    .btn.green:hover{background:#3f5f4b}
+
+    
+    header{
+      position:absolute;
+      top:0; left:0; right:0;
+      z-index:60;
+      background:transparent;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      min-width:280px;
+    }
+    .brandmark{display:flex;flex-direction:column;line-height:1.05}
+    .brandmark b{
+      font-size:22px;
+      letter-spacing:.8px;
+      color:#fff;
+    }
+    .brandmark span{
+      margin-top:6px;
+      font-size:11px;
+      letter-spacing:4px;
+      color:rgba(255,255,255,.88);
+      text-transform:uppercase;
+    }
+    .tagline{
+      margin-top:4px;
+      max-width:520px;
+      font-size:18px;
+      line-height:1.35;
+      font-weight:500;
+      color:rgba(255,255,255,.92);
+    }
+    .nav-cta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+    /* CTA buttons on hero overlay */
+    .nav-cta .btn.secondary{
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      border-color:rgba(255,255,255,.22);
+    }
+    .nav-cta .btn.secondary:hover{background:rgba(255,255,255,.18)}
+.hero{
+      position:relative;
+      padding:200px 0 140px;
+      color:#fff;
+      background:
+        linear-gradient(180deg, rgba(34,44,44,.65), rgba(34,44,44,.82)),
+        radial-gradient(1000px 420px at 20% 20%, rgba(74,107,84,.25), transparent 55%);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background-image:url("/assets/hero.jpg");
+      background-size:cover;
+      background-position:center;
+      opacity:.55;
+      filter:saturate(1.05) contrast(1.03);
+    }
+    .hero .wrap{position:relative}
+    .grid-hero{display:grid;grid-template-columns: 1.25fr .75fr;gap:22px;align-items:stretch}
+    h1{margin:14px 0 12px;font-size:52px;line-height:1.02;letter-spacing:-1px}
+    .lead{color:rgba(255,255,255,.86);font-size:18px;margin:0 0 20px;max-width:760px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero .btn.secondary{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.22)}
+    .hero .btn.secondary:hover{background:rgba(255,255,255,.18)}
+    
+
+    .panel{
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.09);
+      padding:18px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+    }
+    .panel h3{
+      margin:0 0 10px;
+      font-size:13px;
+      color:rgba(255,255,255,.82);
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      font-weight:750;
+    }
+    .kpi{
+      border:1px solid rgba(255,255,255,.16);
+      border-radius:14px;
+      padding:14px;
+      background:rgba(255,255,255,.07);
+      margin-bottom:12px;
+    }
+    .kpi:last-child{margin-bottom:0}
+    .kpi b{display:block;font-size:16px;margin-bottom:6px;color:#fff}
+    .kpi span{color:rgba(255,255,255,.82);font-size:14px}
+
+    
+
+    /* Tabs across bottom of hero banner */
+    .hero-tabs{
+      position:absolute;
+      left:0; right:0;
+      bottom:0;
+      padding:0 0 18px;
+    }
+    .tabsbar{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(34,44,44,.38);
+      backdrop-filter: blur(10px);
+      border-radius:999px;
+      padding:10px 12px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.22);
+      max-width:980px;
+      margin:0 auto;
+    }
+    .tabsbar a{
+      color:rgba(255,255,255,.88);
+      font-size:14px;
+      padding:8px 12px;
+      border-radius:999px;
+      transition: background .2s ease, color .2s ease;
+      white-space:nowrap;
+    }
+    .tabsbar a:hover{
+      background:rgba(255,255,255,.10);
+      color:#fff;
+    }
+    @media (max-width: 980px){
+      .hero-tabs{padding:0 0 14px}
+      .tabsbar{border-radius:18px}
+      .tabsbar a{font-size:13px;padding:8px 10px}
+    }
+
+section{padding:70px 0}
+    .alt{background:var(--muted)}
+    .alt2{background:var(--muted2)}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:22px}
+    .section-head h2{margin:0;font-size:32px;letter-spacing:-.4px}
+    .section-head p{margin:0;color:var(--sub);max-width:660px}
+
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+      transition: transform .12s ease, box-shadow .2s ease;
+    }
+    .card:hover{transform:translateY(-3px);box-shadow: 0 20px 44px rgba(0,0,0,.10)}
+    .tag{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:12px;color:var(--green);
+      font-weight:780;letter-spacing:.7px;text-transform:uppercase;
+      margin-bottom:10px;
+    }
+    .dot{width:8px;height:8px;border-radius:999px;background:var(--green);display:inline-block}
+    .card h3{margin:0 0 8px;font-size:18px}
+    .card p{margin:0;color:var(--sub)}
+
+    .photobreak{padding:0;background:#000; position:relative}
+    .photobreak .photo{
+      height:360px;background-size:cover;background-position:center;position:relative;
+    }
+    .photobreak .photo::after{
+      content:"";position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(34,44,44,.25), rgba(34,44,44,.78));
+    }
+    .photobreak .caption{
+      position:absolute; left:0; right:0; bottom:22px;
+      color:#fff;
+    }
+    .photobreak .caption .wrap{display:block}
+    .photobreak b{display:block;font-size:20px;margin-bottom:6px}
+    .photobreak span{color:rgba(255,255,255,.85)}
+
+    .media-split{display:grid;grid-template-columns: 1fr 1fr;gap:16px;align-items:stretch}
+    .media{border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); box-shadow:0 12px 28px rgba(0,0,0,.06); background:#fff}
+    .media img{width:100%; height:100%; object-fit:cover; display:block; min-height:360px;}
+    .box{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:22px;
+      background:#fff;
+      box-shadow: 0 12px 28px rgba(0,0,0,.06);
+    }
+    .box h3{margin:0 0 8px}
+    .list{margin:0;padding-left:18px;color:var(--sub)}
+    .list li{margin:8px 0}
+
+    .darkbreak{background:linear-gradient(180deg, #1A2323, #222C2C);color:#fff;position:relative;overflow:hidden}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .stat{border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:18px;background:rgba(255,255,255,.06);backdrop-filter: blur(10px);}
+    .stat b{display:block;font-size:18px;margin-bottom:6px}
+    .stat span{color:rgba(255,255,255,.80);font-size:14px}
+
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{border:1px solid var(--border);background:#fff;padding:10px 12px;border-radius:999px;color:var(--sub);font-size:14px}
+
+    .contact{
+      background:
+        radial-gradient(900px 340px at 10% 20%, rgba(74,107,84,.14), transparent 55%),
+        radial-gradient(900px 340px at 90% 10%, rgba(34,44,44,.08), transparent 55%);
+      border-top:1px solid var(--border);
+    }
+    form{display:grid;gap:12px;border:1px solid var(--border);background:#fff;border-radius:var(--radius);padding:18px;box-shadow: var(--shadow2);}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{font-size:13px;color:var(--sub);font-weight:650}
+    input, textarea, select{width:100%;border:1px solid var(--border);border-radius:12px;padding:12px 12px;font-size:15px;outline:none;}
+    input:focus, textarea:focus, select:focus{border-color:rgba(74,107,84,.55);box-shadow:0 0 0 4px rgba(74,107,84,.12)}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{border-top:1px solid var(--border);padding:22px 0;color:var(--sub);font-size:14px}
+    .foot{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .foot a{color:var(--sub);text-decoration:underline;text-underline-offset:3px}
+
+    @media (max-width: 980px){
+      .grid-hero{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .media-split{grid-template-columns:1fr}
+      .stats{grid-template-columns:1fr}
+      nav{display:none}
+      h1{font-size:40px}
+      .row{grid-template-columns:1fr}
+      .photobreak .photo{height:300px}
+      .media img{min-height:260px}
+    }
+  
+/* Unified header (shared across pages) */
+.site-header{
+  position:sticky; top:0; z-index:60;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.header-row{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding:14px 0;
+}
+.brand{
+  display:flex; flex-direction:column; gap:6px;
+  text-decoration:none;
+  min-width:260px;
+}
+.brandmark{display:flex; flex-direction:column; line-height:1.05}
+.brandmark b{font-size:20px;letter-spacing:.8px;color:var(--charcoal)}
+.brandmark span{margin-top:6px;font-size:11px;letter-spacing:4px;color:var(--green);text-transform:uppercase}
+.tagline{font-size:13px;color:var(--sub);max-width:520px}
+.main-nav{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:center}
+.main-nav a{
+  font-size:14px;color:var(--sub);
+  padding:8px 10px;border-radius:999px;
+  text-decoration:none;
+  transition: background .2s ease, color .2s ease;
+}
+.main-nav a:hover{background:var(--muted);color:var(--charcoal)}
+@media (max-width: 980px){
+  .tagline{display:none}
+  .main-nav{display:none}
+}
+
+</style>
+
+<style>
+.hero-subtitle{
+  text-align:center;
+  font-size:32px;
+  font-weight:600;
+  letter-spacing:.5px;
+  margin-top:60px;
+  margin-bottom:20px;
+  color:#fff;
+}
+@media (max-width:980px){
+  .hero-subtitle{
+    font-size:22px;
+    padding:0 20px;
+  }
+}
+</style>
+
+
+<style>
+.renters-dark{
+  background:linear-gradient(180deg, #1A2323, #222C2C);
+  color:#fff;
+}
+.renters-dark .section-head p{
+  color:rgba(255,255,255,.80);
+}
+.renters-dark .card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  color:#fff;
+}
+.renters-dark .card p{
+  color:rgba(255,255,255,.82);
+}
+</style>
+
+
+<style>
+/* Clickable card */
+.card-link{
+  position:relative;
+  display:block;
+}
+.card-link:focus{outline:none}
+.card-link::after{
+  content:"";
+  position:absolute; inset:-2px;
+  border-radius: var(--radius);
+  border: 2px solid transparent;
+  transition: border-color .2s ease;
+  pointer-events:none;
+}
+.card-link:hover::after{
+  border-color: rgba(74,107,84,.40);
+}
+.card-link .card{
+  height:100%;
+}
+.card-cta{
+  margin-top:12px;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-weight:650;
+  color:rgba(255,255,255,.92);
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+.card-cta.light{
+  color:var(--green);
+}
+</style>
+</head>
+
+<body>
+  <header class="site-header">
+  <div class="wrap">
+    <div class="header-row">
+      <a class="brand" href="./index.html" aria-label="Come Home Realty Group home">
+        <div class="brandmark">
+          <b>COME HOME</b>
+          <span>REALTY GROUP</span>
+        </div>
+        <div class="tagline">Helping investors buy homes — and helping renters find homes to make their own.</div>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a href="./index.html">Home</a>
+        <a href="./homes.html">Listings</a>
+        <a href="./investors.html">For Investors</a>
+        <a href="./renters.html">For Renters</a>
+        <a href="./apply.html">Apply</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn secondary" href="./index.html#contact">Contact</a>
+        <a class="btn green" href="./homes.html">View Listings</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-subtitle">Florida Residential Investment &amp; Property Management</div>
+        
+      </div>
+
+      <div class="hero-tabs" aria-label="Section navigation">
+        <div class="wrap">
+          <div class="tabsbar">
+            <a href="#services">Services</a>
+            <a href="./investors.html" target="_blank" rel="noopener">For Investors</a>
+            <a href="./renters.html" target="_blank" rel="noopener">For Renters</a>
+            <a href="#renovation">Renovation Advantage</a>
+            <a href="#process">Process</a>
+            <a href="#markets">Markets</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    
+    <section id="operator-intro">
+      <div class="wrap">
+        <div style="max-width:880px;margin-bottom:40px;">
+          <h1 style="font-size:42px;line-height:1.1;margin-bottom:16px;">
+            Operator-level execution for Florida rental portfolios.
+          </h1>
+          <p style="font-size:18px;color:var(--sub);max-width:760px;">
+            Come Home Realty Group serves national investors with acquisition support, renovation coordination,
+            rental portfolio management, and strategic disposition guidance — built for performance and visibility.
+          </p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;">
+          <div class="box">
+            <h3>Visibility & Accountability</h3>
+            <p class="list">Clear cadence, documented execution, and portfolio-first decisions.</p>
+          </div>
+          <div class="box">
+            <h3>Stabilization Speed</h3>
+            <p class="list">Turnovers and rehab coordination designed to get units rent-ready faster.</p>
+          </div>
+          <div class="box">
+            <h3>Lifecycle Alignment</h3>
+            <p class="list">Acquire, renovate, rent, manage, and sell — under one strategy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+<section id="services" class="alt">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Core services</h2>
+            <p>Built for investor clients who want speed, clarity, and reliable execution.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Acquisition</div>
+            <h3>Investment sourcing &amp; deal support</h3>
+            <p>Guidance on targets, property selection, offer strategy, and due diligence coordination.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Management</div>
+            <h3>Rental portfolio management</h3>
+            <p>Workflows for screening, rent collection, maintenance coordination, and oversight.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Value Optimization</div>
+            <h3>Renovation coordination</h3>
+            <p>Make-ready + rehab scopes coordinated to support yield, valuation, and resale.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Disposition</div>
+            <h3>Exit strategy support</h3>
+            <p>Resale execution aligned with timing, rehab strategy, and market conditions.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Flips</div>
+            <h3>Project-driven transactions</h3>
+            <p>Support for flip acquisitions and resale execution (including renovation planning).</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Investors</div>
+            <h3>Clear updates &amp; accountability</h3>
+            <p>Repeatable systems for remote ownership and consistent decision-making.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="photobreak" aria-label="Photo break">
+      <div class="photo" style="background-image:url('/assets/closing.jpg');"></div>
+      <div class="caption">
+        <div class="wrap">
+          <b>Clear execution from acquisition to stabilization.</b>
+          <span>Confidence for remote investors — with documented processes and accountability.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="investors">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Built for out-of-state investors</h2>
+            <p>Nationwide investors need trust, speed, and visibility — not guesswork.</p>
+          </div>
+        </div>
+
+        <div class="media-split">
+          <div class="box">
+            <h3>What you can expect</h3>
+            <ul class="list">
+              <li>Clear communication and fast response times</li>
+              <li>Operator mindset: protect the asset, optimize performance</li>
+              <li>Renovation coordination to reduce downtime and improve rents</li>
+              <li>Portfolio-first decisions, not transaction-first decisions</li>
+            </ul>
+          </div>
+          <div class="media" aria-label="Finished interior">
+            <img src="/assets/finished.jpg" alt="Finished interior after renovation" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="renovation" class="alt2">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Renovation advantage</h2>
+            <p>Reduce downtime, improve rents, and increase valuation with a coordinated plan.</p>
+          </div>
+        </div>
+
+        <div class="media-split">
+          <div class="media" aria-label="Renovation work">
+            <img src="/assets/renovation.jpg" alt="Renovation work and contractor oversight" />
+          </div>
+          <div class="box">
+            <h3>How we use renovation strategically</h3>
+            <ul class="list">
+              <li>Scope planning: rent-ready vs. value-add (ROI-driven)</li>
+              <li>Turnover execution: reduce vacancy time</li>
+              <li>Quality control: protect the asset and the tenant experience</li>
+              <li>Resale preparation: align finishes and improvements with exit strategy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="darkbreak" aria-label="Operator highlight">
+      <div class="wrap">
+        <div class="section-head" style="margin-bottom:18px">
+          <div>
+            <h2 style="color:#fff;margin:0">A firm-built approach — without the corporate feel.</h2>
+            <p style="color:rgba(255,255,255,.80)">Warm brand. Professional execution. Built to scale with investor portfolios.</p>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <b>Investor-first systems</b>
+            <span>Communication, documentation, and repeatable workflows.</span>
+          </div>
+          <div class="stat">
+            <b>Renovation advantage</b>
+            <span>Coordinated scopes to reduce downtime and optimize value.</span>
+          </div>
+          <div class="stat">
+            <b>Florida coverage</b>
+            <span>Strategy built for national investors targeting Florida markets.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Simple, repeatable process</h2>
+            <p>A clear workflow that supports acquisitions, renovations, and stabilized rentals.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 1</div>
+            <h3>Strategy &amp; targets</h3>
+            <p>Define buy box, budget, timeline, and management expectations.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 2</div>
+            <h3>Acquire &amp; plan</h3>
+            <p>Coordinate due diligence and scope for rent-ready or value-add improvements.</p>
+          </div>
+          <div class="card">
+            <div class="tag"><span class="dot"></span> Step 3</div>
+            <h3>Execute &amp; stabilize</h3>
+            <p>Coordinate rehab/turnover, tenant placement workflow, and ongoing management cadence.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="markets" class="alt">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Florida market coverage</h2>
+            <p>Update this list to match your actual service areas — investors often search by city.</p>
+          </div>
+        </div>
+
+        <div class="chips" aria-label="Market areas">
+          <span class="chip">Orlando</span>
+          <span class="chip">Tampa</span>
+          <span class="chip">Ocala</span>
+          <span class="chip">Gainesville</span>
+          <span class="chip">Fort Myers</span>
+          <span class="chip">Sarasota</span>
+          <span class="chip">Daytona Beach</span>
+          <span class="chip">Jacksonville</span>
+          <span class="chip">Central Florida</span>
+          <span class="chip">South Florida</span>
+        </div>
+      </div>
+    </section>
+
+    
+    <section id="renters" class="renters-dark">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>For renters</h2>
+            <p>Quality rental homes managed with clear communication and professional oversight.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          
+          <a class="card-link" href="./homes.html" target="_blank" rel="noopener">
+            <div class="card">
+              <h3>Listings</h3>
+              <p>Browse professionally managed rental properties in Florida markets.</p>
+              <span class="card-cta">View listings →</span>
+            </div>
+          </a>
+    
+          <div class="card">
+            <h3>Responsive Support</h3>
+            <p>Clear communication, maintenance coordination, and structured service.</p>
+          </div>
+          <div class="card">
+            <h3>Simple Process</h3>
+            <p>Application, approval, and move-in handled efficiently and transparently.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>Start the conversation</h2>
+            <p>Tell us what you’re buying, building, or managing — we’ll respond with next steps.</p>
+          </div>
+        </div>
+
+        <form>
+          <div class="row">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="phone">Phone</label>
+              <input id="phone" name="phone" placeholder="(555) 555-5555" />
+            </div>
+            <div>
+              <label for="focus">Primary focus</label>
+              <select id="focus" name="focus">
+                <option value="" selected>Select one…</option>
+                <option>Buy & Hold Rentals</option>
+                <option>Value-Add / Renovation</option>
+                <option>Flip & Resale</option>
+                <option>Wholesale Opportunities</option>
+                <option>Property Management Only</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="message">What are you looking to do?</label>
+            <textarea id="message" name="message" placeholder="Example: Buying 2–4 SFRs in Central Florida for long-term rentals. Need acquisition support + renovation coordination + management."></textarea>
+          </div>
+
+          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <button class="btn green" type="button" onclick="alert('Preview only. Netlify form wiring comes next.')">Send</button>
+            <span style="color:var(--sub);font-size:14px">Prefer email? <span style="text-decoration:underline;text-underline-offset:3px">info@yourdomain.com</span></span>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="y"></span> Come Home Realty Group. All rights reserved.</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a href="#services">Services</a>
+          <a href="#investors">Investors</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+<style>
+@media (max-width: 980px){
+  .tagline{
+    font-size:16px;
+    max-width:100%;
+  }
+}
+</style>
